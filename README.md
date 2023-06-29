@@ -12,3 +12,6 @@ if we like to see the logs
 ```
 docker-compose up
 ```
+
+update readme
+to test
