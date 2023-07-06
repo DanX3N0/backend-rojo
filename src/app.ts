@@ -4,6 +4,7 @@ import { UserController } from './routes/users';
 import  mongoose, { Mongoose } from 'mongoose';
 import * as dotenv from 'dotenv'
 import cors from 'cors'
+import { ClientController } from './routes/client';
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config()
 }
@@ -26,6 +27,7 @@ export default class App {
     }
     private setupDatabase() {
         const connecitonString = `mongodb://${this.databaseUser}:${this.databasePassword}@${this.databaseHost}:${this.databasePort}/${this.databaseName}`;
+
         console.log('connection', connecitonString);
         this.databaseClient.connect(connecitonString);
         
@@ -51,6 +53,7 @@ export default class App {
     }
     private initRoutes(service: string):void {
         const userController = new UserController(this, `/${this.apiVersion}/${this.apiPrefix}/${service}`);
+        const clientController = new ClientController(this, `/${this.apiVersion}/${this.apiPrefix}/${'client'}`);
     }
     public getAppServer():Express {
         return this.appServer;
