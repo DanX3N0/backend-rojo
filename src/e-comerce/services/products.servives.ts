@@ -1,5 +1,5 @@
-import { Products } from "../schema/interfaces/products.interface"
-import { ProductsModel } from "../schema/products.schema"
+import { Products } from '../schema/interfaces/products.interface'
+import { ProductsModel } from '../schema/products.schema'
 
 const productPost = async(products:Products)=>{
     const responseInsert = await ProductsModel.create(products)

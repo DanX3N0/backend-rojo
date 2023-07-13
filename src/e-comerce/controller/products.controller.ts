@@ -1,11 +1,11 @@
-import { productPost, productsGet,ProductGet, productPut, dlProduct } from "../services/products.servives"
-import { handleHttp } from "../utils/error.handle"
+import { productPost, productsGet,ProductGet, productPut, dlProduct } from '../services/products.servives'
+import { handleHttp } from '../utils/error.handle'
 
 const get = async({ params }:Request|any,res:Response|any) =>{
     try{
         const {id}=params
         const response = await ProductGet(id)
-        const data = response? response:"NOT FOUND"
+        const data = response? response:'NOT FOUND'
         res.send(data)
     }catch (e){
         handleHttp(res,'ERROR_GET_ITEM',e)
