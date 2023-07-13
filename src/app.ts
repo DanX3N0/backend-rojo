@@ -1,6 +1,9 @@
 import express, {Express} from 'express';
 import { parseEnvNumber, parseEnvString } from './utils';
 import { UserController } from './routes/users';
+
+import { ProductController } from './routes/routeProduct';
+
 import  mongoose, { Mongoose } from 'mongoose';
 import * as dotenv from 'dotenv'
 import cors from 'cors'
@@ -48,9 +51,13 @@ export default class App {
         this.appServer.use(express.urlencoded({extended: true}));
         this.setupDatabase();
         this.initRoutes('users');
+        this.initRoutesp('routeProduct');
     }
+    
     private initRoutes(service: string):void {
-        const userController = new UserController(this, `/${this.apiVersion}/${this.apiPrefix}/${service}`);
+        const userController = new UserController(this, `/${this.apiVersion}/${this.apiPrefix}/${service}`);}
+        private initRoutesp(service: string):void {
+        const productController = new ProductController(this, `/${this.apiVersion}/${this.apiPrefix}/${service}`);
     }
     public getAppServer():Express {
         return this.appServer;

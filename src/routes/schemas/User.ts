@@ -1,4 +1,4 @@
-import { Schema, Document, Mongoose } from 'mongoose';
+import mongoose, { Schema, Document, Mongoose, Model, model} from 'mongoose';
 
 export interface IRoles extends Document {
   name: string;
@@ -18,6 +18,9 @@ const userSchema: Schema = new Schema({
   password: { type: String, required: true },
   roles: [{ type: Object}],
 });
-export const UserModel = (mongoose: Mongoose) => {
-  return mongoose.model<IUser>("User", userSchema);
-} 
+
+export const userModel =(mongoose:Mongoose)=>{
+  return mongoose.model<IUser>("Product",userSchema);
+}
+export default mongoose.model("User",userSchema);
+export const UserModel: Model<IUser> = model<IUser>('User', userSchema);
