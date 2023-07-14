@@ -31,7 +31,6 @@ export default class App {
     private setupDatabase() {
         const connecitonString = `mongodb://${this.databaseUser}:${this.databasePassword}@${this.databaseHost}:${this.databasePort}/${this.databaseName}`;
         
-        console.log('connection', connecitonString);
         this.databaseClient.connect(connecitonString);
         
         this.databaseClient.connection.on('error', (error) => {

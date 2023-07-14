@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 export const validateDataClient = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -11,22 +12,22 @@ export const validateDataClient = async (req: Request, res: Response, next: Next
     );
 
     if (extraFields.length > 0) {
-      res.status(400).send('todos los campos son requeridos');
+      res.status(StatusCodes.BAD_REQUEST).send('All fields are required');
       return;
     }
 
     if (!name || !lastName || !email || !phone || !billingAddress || !shippingAddress || !marketingPreference ) {
-      res.status(400).send('todos los campos son requeridos');
+      res.status(StatusCodes.BAD_REQUEST).send('All fields are required');
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      res.status(400).send('ingrese un correo valido');
+      res.status(StatusCodes.BAD_REQUEST).send('invalid email');
       return;
     }
 
     if (!/^[0-9]+$/.test(phone)) {
-      res.status(400).send('ingrese un numero telefonico valido');
+      res.status(StatusCodes.BAD_REQUEST).send('invalid phone number');
       return;
     }
 
