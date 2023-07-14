@@ -3,3 +3,4 @@ node_modules
  feature/WEBSITES-2
 .gitignore
 main
+node_modules/
