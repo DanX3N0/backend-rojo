@@ -15,3 +15,9 @@ docker-compose up
 
 update readme
 to test
+
+```
+docker -t build .
+```
+
+test
