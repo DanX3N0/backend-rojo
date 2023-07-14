@@ -1,6 +1,6 @@
 db = db.getSiblingDB("seminario");
 db.createUser({
-  user: "miusuario",
-  pwd: "mipassword",
+  user: "root",
+  pwd: "example",
   roles: [{ role: "readWrite", db: "seminario" }],
 });

@@ -1,10 +1,12 @@
 import { Express } from 'express';
-import  { IRoles, IUser, UserModel } from '../routes/schemas/User';
+import  { IRoles, IUser, userModel } from '../routes/schemas/User';
 import {
 	StatusCodes,
 } from 'http-status-codes';
 import App from '../app';
 import { Model, Schema } from 'mongoose';
+
+// import {generateToken} from "../authentication/authUser"
 export class UserController {
     private route: string;
     private app: App;
@@ -16,7 +18,7 @@ export class UserController {
         this.app = app;
         this.express = this.app.getAppServer();
         // this.user is a Model object
-        this.user = UserModel(this.app.getClientMongoose());
+        this.user = userModel(this.app.getClientMongoose());
 
         this.initRoutes();
         
@@ -29,7 +31,7 @@ export class UserController {
         });
         
         this.express.post(this.route, async (req, res) => {            
-            const roles: any = {name: 'user', description: 'user', permissions: ['user']};
+            const roles: any = {name: 'root', description: 'user', permissions: ['readWrite']};
             const rolesList = [];
             rolesList.push(roles);
             const requestObject = {...req.body, roles: rolesList};

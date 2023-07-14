@@ -1,2 +1,5 @@
 node_modules
 .env
+ feature/WEBSITES-2
+.gitignore
+main
